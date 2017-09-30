@@ -1,0 +1,145 @@
+{game_entity
+	(include "/properties/armoredcar.ext")
+	(include "/properties/selection/vehicle.inc"  scale(1.1))
+	{props "vehicle" "armored_car" "wheeled" "turn_over" "vision_vehicle_high" "-tractor"}
+	{PatherId "vehicle.small"}
+	("armor_light" args 1.0)
+	
+	{extender "enumerator"}
+
+;	{Volume "Body"
+;		{tags "body"}
+;		{component "body"}
+;		{thickness 10}
+;	}
+
+	("armor_medium" turret(0) body(10 10 10 7))
+
+	{volume "body1"
+		{tags "body"}
+		{component "body"}
+		{thickness 10}   
+	}
+	{volume "body2"
+		{tags "body"}
+		{component "body"}
+		{thickness 10}
+	}
+	{volume "body3"
+		{tags "body"}
+		{component "body"}
+		{thickness 10}
+	}
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("wheel" args "wheelright2")
+	("wheel" args "wheelleft2")
+
+	("crew_human" place(driver) bone(driver) door(emit1) animation(driver))
+	("crew_human" place(gunner) bone(gunner) door(emit3) animation(gunner))
+	("crew_human" place(commander) bone(commander) door(emit2) animation(commander))
+	{placer
+		{place "driver"		{group "driver"} {visor "driver"}}
+		{place "gunner"		{group "gunner"} {visor "main"} {turnoff {targetable 0}}}
+		{place "commander"	{group "driver"} {visor "main"}}
+	}
+
+	("board_animation" place(driver) board_begin(board_willis_driver) board_end(seat_Willis_driver) base(doorleft))
+	{boarder
+		{anm "gunner"
+			{forward {begin "board_LowTank_stand"} {end "seat_gunner_stand"}}
+			{reverse {end "emit_tank_1_hold" 1}}
+		}
+	}
+	("board_animation" place(commander) board_begin(board_willis) board_end(seat_Willis_passenger) base(doorright))
+
+	{sensor
+		{visor "driver"
+			{bone "visor1"}
+			{vision "moto_crew"}
+		}
+		{visor "main"
+			{bone "visor2"}
+			{vision "vehicle_top_mgun"}
+		}
+	}
+
+	{extender "inventory"
+		{weapon "mgun"
+			{mask "weapon mgun"}
+		}
+		{weapon "mgun3_driver"
+			{mask "weapon mgun"}
+		}
+		{weapon "mgun2_commander"
+			{mask "weapon mgun"}
+		}
+		{Box
+			{item "bandage" 10}
+			{item "dynamite"}						
+			{item  "ammo mgun" 4000}
+			{item "ammo hmgun" 1000}			
+			{item "browning" filled {user "mgun"}}
+			{item "browning_m19"}
+		}
+	}
+	{Weaponry
+		{place "mgun"
+			{type "mgun_aa"}
+			{charger "gunner"}
+			{LinkBone "mgun"}
+			{LinkAnimation "off"}
+			("abm_mgun")
+		}
+		{place "mgun3_driver"
+			{type "mgun_main"}
+			{weapon "vickers_k" filled}
+			{LinkBone "mgun3_driver"}
+			{LinkAnimation "off"}
+			{gunner "driver"}
+			{charger "driver"}
+			{foresight "foresight5"}			
+			("abm_mgun")
+			{basic}
+		}				
+		{place "mgun2_commander"
+			{type "mgun_main"}
+			{weapon "vickers_k" filled}
+			{LinkBone "mgun2_commander"}
+			{LinkAnimation "off"}		
+			{gunner "commander"}
+			{charger "commander"}
+			{foresight "foresight6"}
+			("abm_mgun")
+			{basic}
+		}			
+	}
+	
+	{mass 1250}
+	{Chassis
+		{Locomotion ("locomotion")
+			{Maxspeed 60}
+	  		{maxSpeedAtMaxTurn 30}
+		}
+		{FuelBag
+			{volume 60 }	
+			{rate	10 }   
+			{remain 60 }
+			{fuel "fuel"}
+		}
+		{speed
+			{Normal  12}
+			{Slow  20}
+		}
+		("car_trace" fx("tracewheel01a") step(0.08) wheell("wlf") wheelr("wrf") bonel("FXtraceL1") boner("FXtraceR1"))
+		("car_trace" fx("tracewheel01a") step(0.08) wheell("wlr") wheelr("wrr") bonel("FXtraceL2") boner("FXtraceR2"))
+	}
+	{Extension "willyssasjeep.mdl"}
+
+	{texmod "d"}
+
+	{bone "turret"
+		{speed 0.03}
+	}
+}

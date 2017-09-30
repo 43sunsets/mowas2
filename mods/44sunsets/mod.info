@@ -1,0 +1,7 @@
+{Mod
+	{Name "44sunset's custom SAS Willys Jeep"}
+	{Desc "Custom jeep variants"}
+	{MinGameVersion "3.260"}
+	{MaxGameVersion "3.260"}
+	{FileId "blah"}
+}
