@@ -52,7 +52,8 @@
 			{reverse {end "emit_tank_1_hold" 1}}
 		}
 	}
-	("board_animation" place(commander) board_begin(board_willis) board_end(seat_Willis_passenger) base(doorright))
+	;("board_animation" place(commander) board_begin(board_willis) board_end(seat_Willis_passenger) base(doorright))
+	("board_animation" place(commander) board_begin(board_willis) board_end(seat_gunner_moto) base(doorright))
 
 	{sensor
 		{visor "driver"
@@ -106,6 +107,7 @@
 		{place "mgun2_commander"
 			{type "mgun_main"}
 			{weapon "vickers_k" filled}
+			{Barrels 2}			
 			{LinkBone "mgun2_commander"}
 			{LinkAnimation "off"}		
 			{gunner "commander"}
